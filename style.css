@@ -1,0 +1,116 @@
+:root {
+  --fundo: #fff;
+  --texto: #111;
+  --destaque: #ef476f;
+  --secundaria: #ffd166;
+}
+
+body.dark {
+  --fundo: #121212;
+  --texto: #f1f1f1;
+  --destaque: #ff6b6b;
+  --secundaria: #ffe066;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: 'Segoe UI', sans-serif;
+  transition: 0.3s;
+}
+
+header {
+  background: linear-gradient(90deg, var(--destaque), var(--secundaria));
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a, nav button {
+  text-decoration: none;
+  color: #fff;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 3rem 1rem;
+  flex-wrap: wrap;
+}
+
+.hero img {
+  width: 300px;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.hero .texto {
+  max-width: 400px;
+}
+
+.hero .btn {
+  margin-top: 1rem;
+  display: inline-block;
+  background-color: var(--destaque);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sobre, .contato {
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--fundo);
+}
+
+.galeria {
+  padding: 2rem;
+  text-align: center;
+}
+
+.galeria .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.galeria img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.galeria img:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--destaque);
+  color: white;
+}
