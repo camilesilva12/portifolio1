@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="style.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -31,12 +33,11 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h2>Olá, eu sou Emilly Cristina</h2>
-            <p>Estudante criativa apaixonada por design, natureza e tecnologia.</p>
-            <a href="#projetos" class="btn" aria-label="Ver Meus Projetos de desenvolvimento web">Ver Meus Projetos</a>
+            <p><span id="typed-text"></span></p> <a href="#projetos" class="btn" aria-label="Ver Meus Projetos de desenvolvimento web">Ver Meus Projetos</a>
         </div>
     </section>
 
-    <section id="sobre" class="section">
+    <section id="sobre" class="section" data-aos="fade-up">
         <h2>Sobre Mim</h2>
         <p>
             Sou uma jovem sonhadora e apaixonada por criatividade. Desde pequena me interesso por artes, natureza e tecnologia.
@@ -50,7 +51,7 @@
         </p>
     </section>
 
-    <section id="projetos" class="section projetos">
+    <section id="projetos" class="section projetos" data-aos="fade-up" data-aos-delay="200">
         <h2>Meus Projetos</h2>
 
         <div class="projetos-grid">
@@ -72,7 +73,7 @@
             </div>
     </section>
 
-    <section id="contato" class="section">
+    <section id="contato" class="section" data-aos="fade-up" data-aos-delay="400">
         <h2>Contato</h2>
         <p>💌 Email: <a href="mailto:emillycristinafernandes779@gmail.com" aria-label="Enviar um email para Emilly Cristina"><i class="fas fa-envelope"></i> emillycristinafernandes779@gmail.com</a></p>
         <p>📷 Instagram: <a href="https://instagram.com/emilly_cristina" target="_blank" aria-label="Visitar perfil do Instagram de Emilly Cristina"><i class="fab fa-instagram"></i> @emilly_cristina</a></p>
@@ -83,41 +84,13 @@
         <p>© 2025 Emilly Cristina. Feito com carinho 💜</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.menu a');
-            const header = document.querySelector('header');
+    <a href="#inicio" id="backToTopBtn" aria-label="Voltar ao topo da página" title="Voltar ao Topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-            function highlightNavLink() {
-                let current = '';
-                // Calcula a altura do cabeçalho para ajuste de scroll
-                const headerOffset = header.offsetHeight;
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - headerOffset - 1; // Subtrai um pixel para garantir que a seção esteja totalmente visível antes de ativar
-                    const sectionHeight = section.clientHeight;
-                    
-                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-                        current = section.id;
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.href.includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            // Adiciona listeners para scroll e resize
-            window.addEventListener('scroll', highlightNavLink);
-            window.addEventListener('resize', highlightNavLink);
-            // Chama a função ao carregar a página para definir o estado inicial
-            highlightNavLink(); 
-        });
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script src="script.js"></script>
 
 </body>
 </html>
