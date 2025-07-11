@@ -36,7 +36,7 @@
         </div>
     </section>
 
-    <section id="sobre" class="section" data-aos="fade-up">
+    <section id="sobre" class="section">
         <h2>Sobre Mim</h2>
         <p>
             Sou uma jovem sonhadora e apaixonada por criatividade. Desde pequena me interesso por artes, natureza e tecnologia.
@@ -50,7 +50,7 @@
         </p>
     </section>
 
-    <section id="projetos" class="section projetos" data-aos="fade-up">
+    <section id="projetos" class="section projetos">
         <h2>Meus Projetos</h2>
 
         <div class="projetos-grid">
@@ -72,7 +72,7 @@
             </div>
     </section>
 
-    <section id="contato" class="section" data-aos="fade-up">
+    <section id="contato" class="section">
         <h2>Contato</h2>
         <p>💌 Email: <a href="mailto:emillycristinafernandes779@gmail.com" aria-label="Enviar um email para Emilly Cristina"><i class="fas fa-envelope"></i> emillycristinafernandes779@gmail.com</a></p>
         <p>📷 Instagram: <a href="https://instagram.com/emilly_cristina" target="_blank" aria-label="Visitar perfil do Instagram de Emilly Cristina"><i class="fab fa-instagram"></i> @emilly_cristina</a></p>
@@ -85,28 +85,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Destacar item de menu ativo na navegação ---
-            const sections = document.querySelectorAll('section[id]'); // Seleciona todas as seções com um ID
-            const navLinks = document.querySelectorAll('.menu a');     // Seleciona todos os links de navegação
-            const header = document.querySelector('header');          // Seleciona o cabeçalho para ajustar o offset
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.menu a');
+            const header = document.querySelector('header');
 
             function highlightNavLink() {
                 let current = '';
-                // Calcula a altura do cabeçalho para ajustar o ponto de detecção da seção
+                // Calcula a altura do cabeçalho para ajuste de scroll
                 const headerOffset = header.offsetHeight;
 
-                // Itera sobre cada seção para verificar qual está visível
                 sections.forEach(section => {
-                    // Calcula a posição do topo da seção, ajustando pela altura do cabeçalho fixo
-                    const sectionTop = section.offsetTop - headerOffset - 1; // -1 para garantir que a seção esteja totalmente visível
-
-                    // Verifica se a posição atual do scroll está dentro dos limites da seção
-                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + section.offsetHeight) {
-                        current = section.id; // Define o ID da seção atual
+                    const sectionTop = section.offsetTop - headerOffset - 1; // Subtrai um pixel para garantir que a seção esteja totalmente visível antes de ativar
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        current = section.id;
                     }
                 });
 
-                // Remove a classe 'active' de todos os links e adiciona ao link da seção atual
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.href.includes(current)) {
@@ -115,20 +111,11 @@
                 });
             }
 
-            // Adiciona listeners para eventos de scroll e redimensionamento da janela
+            // Adiciona listeners para scroll e resize
             window.addEventListener('scroll', highlightNavLink);
             window.addEventListener('resize', highlightNavLink);
-            // Chama a função uma vez ao carregar a página para definir o estado inicial
-            highlightNavLink();
-
-            // --- Animações ao rolar com AOS (Animate On Scroll) ---
-            // Este é um exemplo de como você integraria uma biblioteca externa.
-            // Para usá-lo, você precisa adicionar os links do AOS no <head>:
-            // <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-            // E o script do AOS antes do fechamento do </body>:
-            // <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-            // E então inicializar:
-            // AOS.init();
+            // Chama a função ao carregar a página para definir o estado inicial
+            highlightNavLink(); 
         });
     </script>
 
