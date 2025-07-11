@@ -1,121 +1,361 @@
+/* Variáveis CSS para Cores e Espaçamentos */
 :root {
-  --fundo: #f5f9ff;
-  --texto: #0a0a23;
-  --destaque: #1e3a8a; /* azul escuro */
-  --secundaria: #3b82f6; /* azul claro */
-  --card: #e0ecff;
+    --primary-color: #6a0dad; /* Roxo principal */
+    --primary-color-dark: #510c94; /* Roxo principal mais escuro para hover */
+    --secondary-color: #d8b5ff; /* Roxo claro para destaques */
+    --accent-color: #8a2be2; /* Azul violeta para detalhes */
+    --accent-color-dark: #5c1a91; /* Azul violeta mais escuro para hover */
+    --text-dark: #333; /* Cor padrão para texto escuro */
+    --text-light: #fff; /* Cor padrão para texto claro */
+    --bg-light: #f8f0ff; /* Fundo mais claro para seções */
+    --bg-card: #f4eaff; /* Fundo dos cards */
+
+    /* Fontes (se estiver usando Poppins do Google Fonts) */
+    --font-family-primary: 'Poppins', sans-serif;
+    --font-family-base: 'Segoe UI', sans-serif;
+
+    /* Tamanhos de fonte */
+    --font-size-base: 1rem; /* 16px */
+    --font-size-lg: 1.2rem;
+    --font-size-xl: 2rem;
+
+    /* Espaçamentos */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 60px;
+    --spacing-xl: 100px;
+
+    /* Sombras */
+    --shadow-light: 0 4px 12px rgba(0,0,0,0.08); /* Sombra suave para cards */
+    --shadow-hover: 0 12px 25px rgba(0,0,0,0.15); /* Sombra mais intensa no hover */
 }
 
-body.dark {
-  --fundo: #0f172a;
-  --texto: #f1f5f9;
-  --destaque: #60a5fa;
-  --secundaria: #93c5fd;
-  --card: #1e293b;
-}
-
+/* Reset básico */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Scrollbar personalizada (para navegadores WebKit) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color-dark);
+}
+
+/* Estilos Globais */
 body {
-  background-color: var(--fundo);
-  color: var(--texto);
-  font-family: 'Segoe UI', sans-serif;
-  transition: 0.3s;
+    font-family: var(--font-family-primary), var(--font-family-base);
+    background-color: var(--text-light); /* Fundo branco */
+    color: var(--text-dark);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    font-size: var(--font-size-base);
 }
 
+/* Cabeçalho */
 header {
-  background: linear-gradient(90deg, var(--destaque), var(--secundaria));
-  padding: 1rem;
+    background-color: var(--primary-color);
+    padding: var(--spacing-md) 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky; /* Fixa o cabeçalho no topo ao rolar */
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
+.logo {
+    color: var(--text-light);
+    font-size: 28px;
+    font-weight: 700; /* Poppins Bold */
 }
 
-nav a, nav button {
-  text-decoration: none;
-  color: white;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
 
+.menu li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600; /* Poppins Semi-Bold */
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: var(--spacing-xs); /* Para a borda inferior do item ativo */
+}
+
+.menu li a:hover,
+.menu li a.active { /* Estilo para o item de menu ativo */
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+/* Seção Hero */
 .hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 1rem;
-  text-align: center;
-  background-color: var(--card);
+    /* Degradê com um toque mais vibrante */
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); 
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
-.hero .btn {
-  margin-top: 1rem;
-  background-color: var(--destaque);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s;
+.hero-content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.5s; /* Começa depois de um pequeno atraso */
 }
 
-.hero .btn:hover {
-  background-color: var(--secundaria);
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.sobre, .contato {
-  padding: 2rem;
-  text-align: center;
+.hero h2 {
+    color: var(--primary-color);
+    font-size: 2.8rem;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700; /* Poppins Bold */
 }
 
-.galeria {
-  padding: 2rem;
-  text-align: center;
+.hero p {
+    font-size: var(--font-size-lg);
+    color: #555;
 }
 
-.galeria .grid {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+.btn {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
+.btn:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px); /* Pequeno efeito de "pular" no hover */
+}
+
+/* Seções Gerais */
+.section {
+    padding: var(--spacing-lg) var(--spacing-md);
+    max-width: 1000px;
+    margin: auto;
+}
+
+.section h2 {
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: var(--spacing-xs);
+    font-weight: 600; /* Poppins Semi-Bold */
+}
+
+/* Ajusta espaçamento entre parágrafos para consistência */
+.section p {
+    margin-bottom: var(--spacing-md);
+}
+
+.section p:last-of-type {
+    margin-bottom: 0;
+}
+
+
+/* Seção de Projetos - Grid */
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+/* Card de Projeto */
 .card {
-  background-color: var(--card);
-  padding: 1.5rem;
-  max-width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: var(--bg-card);
+    padding: var(--spacing-md);
+    border-left: 5px solid var(--accent-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid transparent; /* Borda inicial transparente */
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-color); /* Borda fina da cor de destaque */
 }
 
 .card h3 {
-  margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: #4b0082; /* Mantenho este tom específico para o título do card */
+}
+
+.card p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.card .technologies {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: var(--spacing-sm);
 }
 
 .card a {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--destaque);
-  text-decoration: none;
-  font-weight: bold;
+    display: inline-block;
+    margin-right: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    padding: 8px 20px;
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    white-space: nowrap; /* Evita que o texto do botão quebre em várias linhas */
 }
 
+.card a:hover {
+    background-color: var(--accent-color-dark);
+    transform: translateY(-1px); /* Pequeno efeito de "pular" */
+}
+
+.card a i { /* Estilo para ícones dentro dos links */
+    margin-right: 5px;
+}
+
+/* Seção de Contato */
+.section#contato p {
+    margin-bottom: var(--spacing-md);
+}
+
+.section#contato p:last-of-type {
+    margin-bottom: 0;
+}
+
+.section#contato a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    display: inline-flex; /* Permite alinhar ícone e texto */
+    align-items: center;
+}
+
+.section#contato a:hover {
+    color: var(--primary-color-dark);
+    text-decoration: underline;
+}
+
+.section#contato a i {
+    margin-right: 8px;
+}
+
+/* Rodapé */
 footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--destaque);
-  color: white;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 25px;
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0 15px;
+    }
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+    .section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Espaço entre os itens do menu no mobile */
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: var(--spacing-md) var(--spacing-sm); /* Menor padding em telas pequenas */
+    }
+
+    .section h2 {
+        font-size: 1.6rem;
+    }
+
+    .projetos-grid {
+        grid-template-columns: 1fr; /* Uma única coluna para mobile */
+    }
+
+    .card {
+        margin-bottom: var(--spacing-md); /* Espaçamento entre cards no mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.7rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .card a {
+        padding: 8px 15px; /* Ajuste o padding dos botões do card em telas muito pequenas */
+        font-size: 0.9rem;
+    }
 }
